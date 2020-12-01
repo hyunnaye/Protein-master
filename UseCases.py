@@ -37,13 +37,13 @@ class DnaManager:
         dna = Dna(dna_sequence)
         pair_seq = ''
         for base in dna_sequence:
-            if base == 'A' or base == 'a':
-                pair_seq += 'T'
-            elif base == 'T' or base == 't':
+            if base in ['U', 'u']:
                 pair_seq += 'A'
-            elif base == 'C' or base == 'c':
+            elif base in ['A', 'A']:
+                pair_seq += 'T'
+            elif base in ['C', 'c']:
                 pair_seq += 'G'
-            elif base == 'G' or base == 'g':
+            elif base in ['G', 'g']:
                 pair_seq += 'C'
             else:
                 return Presenter.print_invalid()
@@ -55,13 +55,13 @@ class DnaManager:
         dna = Dna(dna_sequence)
         rna_sequence = ''
         for base in dna_sequence:
-            if base == 'T' or base == 't':
+            if base in ['U', 'u']:
                 rna_sequence += 'A'
-            elif base == 'A' or base == 'a':
-                rna_sequence += 'U'
-            elif base == 'C' or base == 'c':
+            elif base in ['A', 'A']:
+                rna_sequence += 'T'
+            elif base in ['C', 'c']:
                 rna_sequence += 'G'
-            elif base == 'G' or base == 'g':
+            elif base in ['G', 'g']:
                 rna_sequence += 'C'
             else:
                 return Presenter.print_invalid()
@@ -91,13 +91,13 @@ class RnaManager:
         rna = Rna(rna_sequence)
         dna_sequence = ''
         for base in rna_sequence:
-            if base == 'U' or base == 'u':
+            if base in ['U', 'u']:
                 dna_sequence += 'A'
-            elif base == 'A' or base == 'A':
+            elif base in ['A', 'A']:
                 dna_sequence += 'T'
-            elif base == 'C' or base == 'c':
+            elif base in ['C', 'c']:
                 dna_sequence += 'G'
-            elif base == 'G' or base == 'g':
+            elif base in ['G', 'g']:
                 dna_sequence += 'C'
             else:
                 return Presenter.print_invalid()
