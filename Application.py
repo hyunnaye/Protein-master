@@ -1,6 +1,6 @@
 from Controller import ProteinSystem
 from UseCases import DnaManager, RnaManager
-import presenter
+import Presenter
 
 if __name__ == '__main__':
     dm = DnaManager()
@@ -8,7 +8,7 @@ if __name__ == '__main__':
     ps = ProteinSystem(dm, rm)
 
     while True:
-        choice = presenter.menu_prompt()
+        choice = Presenter.menu_prompt()
         if choice == 1:
             print(ps.dna_pairing())
         elif choice == 2:
@@ -16,4 +16,4 @@ if __name__ == '__main__':
         elif choice == 3:
             print(ps.get_protein())
         else:
-            print(presenter.print_invalid())
+            print(Presenter.print_invalid())

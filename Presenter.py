@@ -4,7 +4,7 @@ def print_invalid() -> str:
 
 def ask_dna_input() -> str:
     return input("Input DNA sequence you would like to "
-                 "find the DNA pair of")
+                 "find the DNA pair of \n")
 
 
 def menu_prompt() -> int:

@@ -1,5 +1,5 @@
-from entities import Dna, Rna
-import presenter
+from Entities import Dna, Rna
+import Presenter
 
 codon_table = {
     'UUU': 'Phe', 'UCU': 'Ser', 'UAU': 'Tyr', 'UGU': 'Cys',
@@ -46,7 +46,7 @@ class DnaManager:
             elif base == 'G' or base == 'g':
                 pair_seq += 'C'
             else:
-                return presenter.print_invalid()
+                return Presenter.print_invalid()
         pair = Dna(pair_seq)
         self._dna_pairs[pair] = dna
         return pair.get_sequence()
@@ -64,7 +64,7 @@ class DnaManager:
             elif base == 'G' or base == 'g':
                 rna_sequence += 'C'
             else:
-                return presenter.print_invalid()
+                return Presenter.print_invalid()
         self._dna_rna_pairs[dna] = rna_sequence
         return rna_sequence
 
@@ -100,7 +100,7 @@ class RnaManager:
             elif base == 'G' or base == 'g':
                 dna_sequence += 'C'
             else:
-                return presenter.print_invalid()
+                return Presenter.print_invalid()
         self._rna_dna_pairs[rna] = dna_sequence
         return dna_sequence
 
