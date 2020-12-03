@@ -14,6 +14,8 @@ if __name__ == '__main__':
         elif choice == 2:
             print(ps.get_mrna())
         elif choice == 3:
+            print(ps.get_dna())
+        elif choice == 4:
             print(ps.get_protein())
         else:
             print(Presenter.print_invalid())

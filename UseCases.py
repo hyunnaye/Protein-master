@@ -37,9 +37,9 @@ class DnaManager:
         dna = Dna(dna_sequence)
         pair_seq = ''
         for base in dna_sequence:
-            if base in ['U', 'u']:
+            if base in ['T', 't']:
                 pair_seq += 'A'
-            elif base in ['A', 'A']:
+            elif base in ['A', 'a']:
                 pair_seq += 'T'
             elif base in ['C', 'c']:
                 pair_seq += 'G'
@@ -55,10 +55,10 @@ class DnaManager:
         dna = Dna(dna_sequence)
         rna_sequence = ''
         for base in dna_sequence:
-            if base in ['U', 'u']:
+            if base in ['T', 't']:
                 rna_sequence += 'A'
-            elif base in ['A', 'A']:
-                rna_sequence += 'T'
+            elif base in ['A', 'a']:
+                rna_sequence += 'U'
             elif base in ['C', 'c']:
                 rna_sequence += 'G'
             elif base in ['G', 'g']:
@@ -93,7 +93,7 @@ class RnaManager:
         for base in rna_sequence:
             if base in ['U', 'u']:
                 dna_sequence += 'A'
-            elif base in ['A', 'A']:
+            elif base in ['A', 'a']:
                 dna_sequence += 'T'
             elif base in ['C', 'c']:
                 dna_sequence += 'G'

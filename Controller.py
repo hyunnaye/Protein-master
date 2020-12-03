@@ -25,6 +25,10 @@ class ProteinSystem:
             return self._rm.rna_to_protein(mrna)
         return Presenter.print_invalid()
 
+    def get_dna(self) -> str:
+        sequence = Presenter.ask_rna_input()
+        return self._rm.rna_to_dna_pair(sequence)
+
 
 
 
