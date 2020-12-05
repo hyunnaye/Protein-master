@@ -7,6 +7,8 @@ from UseCases import RnaManager, DnaManager
 class MainApp(tk.Tk):
     def __init__(self):
         tk.Tk.__init__(self)
+        self.title("Protein Synthesis Master")
+        self.geometry("650x200")
         self._frame = None
         self.frame_switch(MainPage)
 
@@ -23,7 +25,7 @@ class MainPage(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
         tk.Label(self, text="Welcome to the Protein Synthesis Master!") \
-            .pack(side="top", fill="x", pady=10)
+            .pack(side="top", fill="x", pady=20)
         tk.Button(self, text="Get the matching DNA pair of a DNA sequence",
                   command=lambda: master.frame_switch(DNAtoDNA)).pack()
         tk.Button(self, text="Convert DNA sequence to its matching mRNA"
@@ -42,7 +44,8 @@ class DNAtoDNA(tk.Frame):
         rm = RnaManager()
         ps = ProteinSystem(dm, rm)
         tk.Frame.__init__(self, master)
-        tk.Label(self, text="Input DNA sequence").pack(side="top", anchor="nw")
+        tk.Label(self, text="Input DNA sequence").pack(side="top", anchor="nw",
+                                                       pady=20)
         entry = tk.Entry(self, width=15)
         entry.pack()
         label = ttk.Label(self, text="")
@@ -61,7 +64,8 @@ class DNAtoRNA(tk.Frame):
         rm = RnaManager()
         ps = ProteinSystem(dm, rm)
         tk.Frame.__init__(self, master)
-        tk.Label(self, text="Input DNA sequence").pack(side="top", anchor="nw")
+        tk.Label(self, text="Input DNA sequence").pack(side="top", anchor="nw",
+                                                       pady=20)
         entry = tk.Entry(self, width=15)
         entry.pack()
         label = ttk.Label(self, text="")
@@ -80,7 +84,8 @@ class RNAtoDNA(tk.Frame):
         rm = RnaManager()
         ps = ProteinSystem(dm, rm)
         tk.Frame.__init__(self, master)
-        tk.Label(self, text="Input RNA sequence").pack(side="top", anchor="nw")
+        tk.Label(self, text="Input RNA sequence").pack(side="top", anchor="nw",
+                                                       pady=20)
         entry = tk.Entry(self, width=15)
         entry.pack()
         label = ttk.Label(self, text="")
@@ -99,7 +104,8 @@ class DNAtoProtein(tk.Frame):
         rm = RnaManager()
         ps = ProteinSystem(dm, rm)
         tk.Frame.__init__(self, master)
-        tk.Label(self, text="Input DNA sequence").pack(side="top", anchor="nw")
+        tk.Label(self, text="Input DNA sequence").pack(side="top", anchor="nw",
+                                                       pady=20)
         entry = tk.Entry(self, width=15)
         entry.pack()
         label = ttk.Label(self, text="")
