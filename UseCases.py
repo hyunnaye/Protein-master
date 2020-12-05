@@ -46,7 +46,7 @@ class DnaManager:
             elif base in ['G', 'g']:
                 pair_seq += 'C'
             else:
-                return dna_sequence
+                return Presenter.print_invalid()
         pair = Dna(pair_seq)
         self._dna_pairs[pair] = dna
         return pair.get_sequence()
