@@ -34,6 +34,11 @@ class DnaManager:
         self._dna_rna_pairs = rna_pair
 
     def find_dna_pair(self, dna_sequence: str) -> str:
+        """Acts in the Use Case method in Clean Architecture to find
+        complementary DNA pair of a given DNA sequence.
+
+        :param dna_sequence: DNA sequence input
+        :return Complementary DNA sequence"""
         dna = Dna(dna_sequence)
         pair_seq = ''
         for base in dna_sequence:
@@ -52,6 +57,11 @@ class DnaManager:
         return pair.get_sequence()
 
     def dna_to_rna_(self, dna_sequence: str) -> str:
+        """Acts in the Use Case method in Clean Architecture to find
+        matching complementary RNA pair of a given DNA sequence.
+
+        :param dna_sequence: DNA sequence input
+        :return matching complementary RNA sequence"""
         dna = Dna(dna_sequence)
         rna_sequence = ''
         for base in dna_sequence:
@@ -88,6 +98,11 @@ class RnaManager:
         self._codon_table = codon_table
 
     def rna_to_dna_pair(self, rna_sequence: str) -> str:
+        """Acts in the Use Case method in Clean Architecture to find
+        matching complementary DNA pair of a given RNA sequence.
+
+        :param rna_sequence: RNA sequence input
+        :return matching complementary DNA sequence"""
         rna = Rna(rna_sequence)
         dna_sequence = ''
         for base in rna_sequence:
@@ -105,17 +120,22 @@ class RnaManager:
         return dna_sequence
 
     def rna_to_protein(self, rna_sequence: str) -> str:
+        """Acts in the Use Case method in Clean Architecture to find
+        matching protein chain of a given RNA sequence.
+
+        :param rna_sequence: RNA sequence input
+        :return protein chain"""
         rna = Rna(rna_sequence)
-        proteinlist = []
+        protein_list = []
         if len(rna_sequence) % 3 == 0:
             for letter in rna_sequence:
                 if letter not in ['A', 'C', 'G', 'U']:
                     return "Invalid input"
             for i in range(0, len(rna_sequence), 3):
                 codon = rna_sequence[i:i + 3]
-                proteinlist.append(codon_table[codon])
-            protein = '-'.join(proteinlist)
-            self._rna_protein_pairs[rna] = proteinlist
+                protein_list.append(codon_table[codon])
+            protein = '-'.join(protein_list)
+            self._rna_protein_pairs[rna] = protein_list
             return protein
         else:
             return "Failed: Sequence not divisible by 3."

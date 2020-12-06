@@ -1,21 +1,16 @@
 def print_invalid() -> str:
+    """Presenter method in Clean Architecture for printing Invalid Input
+    :return invalid input string"""
     return "Invalid input"
 
 
 def ask_dna_input() -> str:
+    """Presenter method in Clean Architecture for asking for DNA Input
+    :return input DNA sequence string"""
     return input("Input DNA sequence")
 
 
 def ask_rna_input() -> str:
-    return input("Input RNA sequence you would like to "
-                 "find the DNA pair of \n")
-
-
-def menu_prompt() -> int:
-    return int(
-        input("Enter the number of which action you would like to perform \n"
-              "1. Find matching DNA pair \n"
-              "2. DNA to RNA \n"
-              "3. RNA to DNA\n"
-              "4. Get polypeptide chain of DNA sequence \n"
-              ))
+    """Presenter method in Clean Architecture for asking for RNA Input
+    :return input RNA sequence string"""
+    return input("Input RNA sequence")

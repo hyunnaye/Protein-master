@@ -8,7 +8,7 @@ class MainApp(tk.Tk):
     def __init__(self):
         tk.Tk.__init__(self)
         self.title("Protein Synthesis Master")
-        self.geometry("650x200")
+        self.geometry("650x225")
         self._frame = None
         self.frame_switch(MainPage)
 
@@ -19,6 +19,13 @@ class MainApp(tk.Tk):
             self._frame.destroy()
         self._frame = new_frame
         self._frame.pack()
+
+    def copy_to_clipboard(self, text):
+        """Copies text to clipboard"""
+        tk.Tk.clipboard_clear(self)
+        tk.Tk.clipboard_append(self, text)
+        tk.Tk.update(self)
+        tk.Label(self, text="Copied to Clipboard").pack(pady=10)
 
 
 class MainPage(tk.Frame):
@@ -44,16 +51,20 @@ class DNAtoDNA(tk.Frame):
         rm = RnaManager()
         ps = ProteinSystem(dm, rm)
         tk.Frame.__init__(self, master)
-        tk.Label(self, text="Input DNA sequence").pack(side="top", anchor="nw",
+        tk.Label(self, text="Input DNA sequence").pack(side="top",
                                                        pady=20)
-        entry = tk.Entry(self, width=15)
+        entry = tk.Entry(self, width=50)
         entry.pack()
-        label = ttk.Label(self, text="")
+        label = tk.Label(self, text="", state="normal")
         label.pack()
         convert = tk.Button(self, text="Convert",
                             command=lambda:
-                            label.config(text=ps.dna_pairing(entry.get())))
+                            label.config(text=ps.dna_pairing(entry.get()),
+                                         wraplengt=500))
         convert.pack()
+        tk.Button(self, text="Copy",
+                  command=lambda: master.copy_to_clipboard(
+                      label.cget("text"))).pack()
         tk.Button(self, text="Return to start page",
                   command=lambda: master.frame_switch(MainPage)).pack()
 
@@ -64,16 +75,20 @@ class DNAtoRNA(tk.Frame):
         rm = RnaManager()
         ps = ProteinSystem(dm, rm)
         tk.Frame.__init__(self, master)
-        tk.Label(self, text="Input DNA sequence").pack(side="top", anchor="nw",
+        tk.Label(self, text="Input DNA sequence").pack(side="top",
                                                        pady=20)
-        entry = tk.Entry(self, width=15)
+        entry = tk.Entry(self, width=50)
         entry.pack()
         label = ttk.Label(self, text="")
         label.pack()
         convert = tk.Button(self, text="Convert",
                             command=lambda:
-                            label.config(text=ps.get_mrna(entry.get())))
+                            label.config(text=ps.get_mrna(entry.get()),
+                                         wraplengt=500))
         convert.pack()
+        tk.Button(self, text="Copy",
+                  command=lambda: master.copy_to_clipboard(
+                      label.cget("text"))).pack()
         tk.Button(self, text="Return to start page",
                   command=lambda: master.frame_switch(MainPage)).pack()
 
@@ -84,16 +99,20 @@ class RNAtoDNA(tk.Frame):
         rm = RnaManager()
         ps = ProteinSystem(dm, rm)
         tk.Frame.__init__(self, master)
-        tk.Label(self, text="Input RNA sequence").pack(side="top", anchor="nw",
+        tk.Label(self, text="Input RNA sequence").pack(side="top",
                                                        pady=20)
-        entry = tk.Entry(self, width=15)
+        entry = tk.Entry(self, width=50)
         entry.pack()
         label = ttk.Label(self, text="")
         label.pack()
         convert = tk.Button(self, text="Convert",
                             command=lambda:
-                            label.config(text=ps.get_dna(entry.get())))
+                            label.config(text=ps.get_dna(entry.get()),
+                                         wraplengt=500))
         convert.pack()
+        tk.Button(self, text="Copy",
+                  command=lambda: master.copy_to_clipboard(
+                      label.cget("text"))).pack()
         tk.Button(self, text="Return to start page",
                   command=lambda: master.frame_switch(MainPage)).pack()
 
@@ -104,16 +123,20 @@ class DNAtoProtein(tk.Frame):
         rm = RnaManager()
         ps = ProteinSystem(dm, rm)
         tk.Frame.__init__(self, master)
-        tk.Label(self, text="Input DNA sequence").pack(side="top", anchor="nw",
+        tk.Label(self, text="Input DNA sequence").pack(side="top",
                                                        pady=20)
-        entry = tk.Entry(self, width=15)
+        entry = tk.Entry(self, width=50)
         entry.pack()
         label = ttk.Label(self, text="")
         label.pack()
         convert = tk.Button(self, text="Convert",
                             command=lambda:
-                            label.config(text=ps.get_protein(entry.get())))
+                            label.config(text=ps.get_protein(entry.get()),
+                                         wraplengt=500))
         convert.pack()
+        tk.Button(self, text="Copy",
+                  command=lambda: master.copy_to_clipboard(
+                      label.cget("text"))).pack()
         tk.Button(self, text="Return to start page",
                   command=lambda: master.frame_switch(MainPage)).pack()
 
