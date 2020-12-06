@@ -33,13 +33,13 @@ class MainPage(tk.Frame):
         tk.Frame.__init__(self, master)
         tk.Label(self, text="Welcome to the Protein Synthesis Master!") \
             .pack(side="top", fill="x", pady=20)
-        tk.Button(self, text="Get the matching DNA pair of a DNA sequence",
+        tk.Button(self, text="Get the complementary DNA pair of a DNA sequence",
                   command=lambda: master.frame_switch(DNAtoDNA)).pack()
-        tk.Button(self, text="Convert DNA sequence to its matching mRNA"
-                             " sequence",
+        tk.Button(self, text="Convert DNA sequence to its matching "
+                             "complementary mRNA sequence",
                   command=lambda: master.frame_switch(DNAtoRNA)).pack()
         tk.Button(self, text="Convert RNA sequence to its "
-                             "matching DNA sequence",
+                             "matching complementary DNA sequence",
                   command=lambda: master.frame_switch(RNAtoDNA)).pack()
         tk.Button(self, text="Find the polypeptide chain for a DNA sequence",
                   command=lambda: master.frame_switch(DNAtoProtein)).pack()
