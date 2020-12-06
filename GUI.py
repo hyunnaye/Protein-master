@@ -59,8 +59,9 @@ class DNAtoDNA(tk.Frame):
         label.pack()
         convert = tk.Button(self, text="Convert",
                             command=lambda:
-                            label.config(text=ps.dna_pairing(entry.get()),
-                                         wraplengt=500))
+                            [label.config(text=ps.dna_pairing(entry.get()),
+                                          wraplengt=500),
+                             copied.config(text="")])
         convert.pack()
         copy = tk.Button(self, text="Copy",
                          command=lambda: [master.copy_to_clipboard(
@@ -87,8 +88,9 @@ class DNAtoRNA(tk.Frame):
         label.pack()
         convert = tk.Button(self, text="Convert",
                             command=lambda:
-                            label.config(text=ps.get_mrna(entry.get()),
-                                         wraplengt=500))
+                            [label.config(text=ps.get_mrna(entry.get()),
+                                          wraplengt=500),
+                             copied.config(text="")])
         convert.pack()
         copy = tk.Button(self, text="Copy",
                          command=lambda: [master.copy_to_clipboard(
@@ -115,8 +117,9 @@ class RNAtoDNA(tk.Frame):
         label.pack()
         convert = tk.Button(self, text="Convert",
                             command=lambda:
-                            label.config(text=ps.get_dna(entry.get()),
-                                         wraplengt=500))
+                            [label.config(text=ps.get_dna(entry.get()),
+                                          wraplengt=500),
+                             copied.config(text="")])
         convert.pack()
         copy = tk.Button(self, text="Copy",
                          command=lambda: [master.copy_to_clipboard(
@@ -144,8 +147,9 @@ class DNAtoProtein(tk.Frame):
 
         convert = tk.Button(self, text="Convert",
                             command=lambda:
-                            label.config(text=ps.get_protein(entry.get()),
-                                         wraplengt=500))
+                            [label.config(text=ps.get_protein(entry.get()),
+                                          wraplengt=500),
+                             copied.config(text="")])
         convert.pack()
         copy = tk.Button(self, text="Copy",
                          command=lambda: [master.copy_to_clipboard(
