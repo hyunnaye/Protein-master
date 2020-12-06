@@ -65,7 +65,7 @@ class DNAtoDNA(tk.Frame):
         tk.Button(self, text="Copy",
                   command=lambda: master.copy_to_clipboard(
                       label.cget("text"))).pack()
-        tk.Button(self, text="Return to start page",
+        tk.Button(self, text="Return to main page",
                   command=lambda: master.frame_switch(MainPage)).pack()
 
 
@@ -89,7 +89,7 @@ class DNAtoRNA(tk.Frame):
         tk.Button(self, text="Copy",
                   command=lambda: master.copy_to_clipboard(
                       label.cget("text"))).pack()
-        tk.Button(self, text="Return to start page",
+        tk.Button(self, text="Return to main page",
                   command=lambda: master.frame_switch(MainPage)).pack()
 
 
@@ -113,7 +113,7 @@ class RNAtoDNA(tk.Frame):
         tk.Button(self, text="Copy",
                   command=lambda: master.copy_to_clipboard(
                       label.cget("text"))).pack()
-        tk.Button(self, text="Return to start page",
+        tk.Button(self, text="Return to main page",
                   command=lambda: master.frame_switch(MainPage)).pack()
 
 
@@ -137,7 +137,7 @@ class DNAtoProtein(tk.Frame):
         tk.Button(self, text="Copy",
                   command=lambda: master.copy_to_clipboard(
                       label.cget("text"))).pack()
-        tk.Button(self, text="Return to start page",
+        tk.Button(self, text="Return to main page",
                   command=lambda: master.frame_switch(MainPage)).pack()
 
 
