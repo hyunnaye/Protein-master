@@ -9,6 +9,7 @@ class MainApp(tk.Tk):
         tk.Tk.__init__(self)
         self.title("Protein Synthesis Master")
         self.geometry("650x225")
+        self.resizable(False, False)
         self._frame = None
         self.frame_switch(MainPage)
 
@@ -25,7 +26,6 @@ class MainApp(tk.Tk):
         tk.Tk.clipboard_clear(self)
         tk.Tk.clipboard_append(self, text)
         tk.Tk.update(self)
-        tk.Label(self, text="Copied to Clipboard").pack(pady=10)
 
 
 class MainPage(tk.Frame):
@@ -62,11 +62,15 @@ class DNAtoDNA(tk.Frame):
                             label.config(text=ps.dna_pairing(entry.get()),
                                          wraplengt=500))
         convert.pack()
-        tk.Button(self, text="Copy",
-                  command=lambda: master.copy_to_clipboard(
-                      label.cget("text"))).pack()
+        copy = tk.Button(self, text="Copy",
+                         command=lambda: [master.copy_to_clipboard(
+                             label.cget("text")),
+                             copied.config(text="Copied to Clipboard")])
+        copy.pack()
         tk.Button(self, text="Return to main page",
                   command=lambda: master.frame_switch(MainPage)).pack()
+        copied = tk.Label(self, text="")
+        copied.pack(pady=10)
 
 
 class DNAtoRNA(tk.Frame):
@@ -86,11 +90,15 @@ class DNAtoRNA(tk.Frame):
                             label.config(text=ps.get_mrna(entry.get()),
                                          wraplengt=500))
         convert.pack()
-        tk.Button(self, text="Copy",
-                  command=lambda: master.copy_to_clipboard(
-                      label.cget("text"))).pack()
+        copy = tk.Button(self, text="Copy",
+                         command=lambda: [master.copy_to_clipboard(
+                             label.cget("text")),
+                             copied.config(text="Copied to Clipboard")])
+        copy.pack()
         tk.Button(self, text="Return to main page",
                   command=lambda: master.frame_switch(MainPage)).pack()
+        copied = tk.Label(self, text="")
+        copied.pack(pady=10)
 
 
 class RNAtoDNA(tk.Frame):
@@ -110,11 +118,15 @@ class RNAtoDNA(tk.Frame):
                             label.config(text=ps.get_dna(entry.get()),
                                          wraplengt=500))
         convert.pack()
-        tk.Button(self, text="Copy",
-                  command=lambda: master.copy_to_clipboard(
-                      label.cget("text"))).pack()
+        copy = tk.Button(self, text="Copy",
+                         command=lambda: [master.copy_to_clipboard(
+                             label.cget("text")),
+                             copied.config(text="Copied to Clipboard")])
+        copy.pack()
         tk.Button(self, text="Return to main page",
                   command=lambda: master.frame_switch(MainPage)).pack()
+        copied = tk.Label(self, text="")
+        copied.pack(pady=10)
 
 
 class DNAtoProtein(tk.Frame):
@@ -129,16 +141,21 @@ class DNAtoProtein(tk.Frame):
         entry.pack()
         label = ttk.Label(self, text="")
         label.pack()
+
         convert = tk.Button(self, text="Convert",
                             command=lambda:
                             label.config(text=ps.get_protein(entry.get()),
                                          wraplengt=500))
         convert.pack()
-        tk.Button(self, text="Copy",
-                  command=lambda: master.copy_to_clipboard(
-                      label.cget("text"))).pack()
+        copy = tk.Button(self, text="Copy",
+                         command=lambda: [master.copy_to_clipboard(
+                             label.cget("text")),
+                             copied.config(text="Copied to Clipboard")])
+        copy.pack()
         tk.Button(self, text="Return to main page",
                   command=lambda: master.frame_switch(MainPage)).pack()
+        copied = tk.Label(self, text="")
+        copied.pack(pady=10)
 
 
 if __name__ == "__main__":
