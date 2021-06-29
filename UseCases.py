@@ -1,3 +1,5 @@
+from typing import Set
+
 from Entities import Dna, Rna
 import Presenter
 
@@ -20,10 +22,18 @@ codon_table = {
     'GUG': 'Val', 'GCG': 'Ala', 'GAG': 'Glu', 'GGG': 'Gly',
 }
 
+amino_acid_alphabet = {
+    'Ala': 'A', 'Cys': 'C', 'Asp': 'D', 'Glu': 'E', 'Phe': 'F', 'Gly': 'G',
+    'His': 'H', 'Ile': 'I', 'Lys': 'K', 'Leu': 'L', 'Met': 'M', 'Asn': 'N',
+    'Pro': 'P', 'Gln': 'Q', 'Arg': 'R', 'Ser': 'S', 'Thr': 'T', 'Val': 'V',
+    'Trp': 'W', 'Tyr': 'Y'
+}
+
 
 class DnaManager:
     _dna_pairs: dict
     _dna_rna_pairs: dict
+    _dna_bases: Set
 
     def __init__(self, dna_pair=None, rna_pair=None):
         if rna_pair is None:
@@ -32,6 +42,7 @@ class DnaManager:
             dna_pair = {}
         self._dna_pairs = dna_pair
         self._dna_rna_pairs = rna_pair
+        self._dna_bases = {'A', 'C', 'G', 'T'}
 
     def find_dna_pair(self, dna_sequence: str) -> str:
         """Acts in the Use Case method in Clean Architecture to find
@@ -84,11 +95,15 @@ class DnaManager:
     def get_dna_rna_pairs(self) -> dict:
         return self._dna_rna_pairs
 
+    def valid_dna_seq(self, sequence) -> bool:
+        return set(sequence.upper()).issubset(self._dna_bases)
+
 
 class RnaManager:
     _rna_dna_pairs: dict
     _codon_table: dict
     _rna_protein_pairs: dict
+    _rna_bases: Set
 
     def __init__(self, rna_dna_pairs=None, rna_protein_pairs=None):
         if rna_dna_pairs is None:
@@ -96,6 +111,7 @@ class RnaManager:
         if rna_protein_pairs is None:
             self._rna_protein_pairs = {}
         self._codon_table = codon_table
+        self._rna_bases = {'A', 'C', 'G', 'U'}
 
     def rna_to_dna_pair(self, rna_sequence: str) -> str:
         """Acts in the Use Case method in Clean Architecture to find
@@ -140,3 +156,16 @@ class RnaManager:
         else:
             return "Failed: Sequence not divisible by 3."
 
+    def valid_rna_seq(self, sequence) -> bool:
+        return set(sequence.upper()).issubset(self._rna_bases)
+
+
+class ProteinManager:
+    _amino_acids: Set
+
+    def __init__(self):
+        self._amino_acids = {'A', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L',
+                             'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'Y'}
+
+    def valid_protein_sequence(self, sequence) -> bool:
+        return set(sequence.upper()).issubset(self._amino_acids)

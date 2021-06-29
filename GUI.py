@@ -1,7 +1,7 @@
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, font
 from Controller import ProteinSystem
-from UseCases import RnaManager, DnaManager
+from UseCases import RnaManager, DnaManager, ProteinManager
 
 
 class MainApp(tk.Tk):
@@ -43,16 +43,21 @@ class MainPage(tk.Frame):
                   command=lambda: master.frame_switch(RNAtoDNA)).pack()
         tk.Button(self, text="Find the polypeptide chain for a DNA sequence",
                   command=lambda: master.frame_switch(DNAtoProtein)).pack()
+        tk.Button(self, text="Sequence Alignment",
+                  command=lambda:
+                  master.frame_switch(SequenceComparison)).pack()
 
 
 class DNAtoDNA(tk.Frame):
     def __init__(self, master):
         dm = DnaManager()
         rm = RnaManager()
-        ps = ProteinSystem(dm, rm)
+        pm = ProteinManager()
+        ps = ProteinSystem(dm, rm, pm)
         tk.Frame.__init__(self, master)
-        tk.Label(self, text="Input DNA sequence").pack(side="top",
-                                                       pady=20)
+        tk.Label(self, text="Input DNA sequence without any spaces").pack(
+            side="top",
+            pady=20)
         entry = tk.Entry(self, width=50)
         entry.pack()
         label = tk.Label(self, text="", state="normal")
@@ -78,10 +83,12 @@ class DNAtoRNA(tk.Frame):
     def __init__(self, master):
         dm = DnaManager()
         rm = RnaManager()
-        ps = ProteinSystem(dm, rm)
+        pm = ProteinManager()
+        ps = ProteinSystem(dm, rm, pm)
         tk.Frame.__init__(self, master)
-        tk.Label(self, text="Input DNA sequence").pack(side="top",
-                                                       pady=20)
+        tk.Label(self, text="Input DNA sequence without any spaces").pack(
+            side="top",
+            pady=20)
         entry = tk.Entry(self, width=50)
         entry.pack()
         label = ttk.Label(self, text="")
@@ -107,10 +114,12 @@ class RNAtoDNA(tk.Frame):
     def __init__(self, master):
         dm = DnaManager()
         rm = RnaManager()
-        ps = ProteinSystem(dm, rm)
+        pm = ProteinManager()
+        ps = ProteinSystem(dm, rm, pm)
         tk.Frame.__init__(self, master)
-        tk.Label(self, text="Input RNA sequence").pack(side="top",
-                                                       pady=20)
+        tk.Label(self, text="Input RNA sequence without any spaces").pack(
+            side="top",
+            pady=20)
         entry = tk.Entry(self, width=50)
         entry.pack()
         label = ttk.Label(self, text="")
@@ -136,10 +145,12 @@ class DNAtoProtein(tk.Frame):
     def __init__(self, master):
         dm = DnaManager()
         rm = RnaManager()
-        ps = ProteinSystem(dm, rm)
+        pm = ProteinManager()
+        ps = ProteinSystem(dm, rm, pm)
         tk.Frame.__init__(self, master)
-        tk.Label(self, text="Input DNA sequence").pack(side="top",
-                                                       pady=20)
+        tk.Label(self, text="Input DNA sequence without any spaces").pack(
+            side="top",
+            pady=20)
         entry = tk.Entry(self, width=50)
         entry.pack()
         label = ttk.Label(self, text="")
@@ -160,6 +171,126 @@ class DNAtoProtein(tk.Frame):
                   command=lambda: master.frame_switch(MainPage)).pack()
         copied = tk.Label(self, text="")
         copied.pack(pady=10)
+
+
+class SequenceComparison(tk.Frame):
+    def __init__(self, master):
+        tk.Frame.__init__(self, master)
+        tk.Label(self, text="Choose the type of sequence you would like to "
+                            "compare through global alignment"
+                            "").pack(side="top", fill="x", pady=20)
+        tk.Button(self, text="DNA",
+                  command=lambda: master.frame_switch(DNACompare)).pack()
+        tk.Button(self, text="RNA",
+                  command=lambda: master.frame_switch(RNACompare)).pack()
+        tk.Button(self, text="Protein",
+                  command=lambda: master.frame_switch(ProteinCompare)).pack()
+        tk.Button(self, text="Return to main page",
+                  command=lambda: master.frame_switch(MainPage)).pack()
+
+
+class DNACompare(tk.Frame):
+    def __init__(self, master):
+        label_font = tk.font.Font(family="Courier New", size=8)
+        dm = DnaManager()
+        rm = RnaManager()
+        pm = ProteinManager()
+        ps = ProteinSystem(dm, rm, pm)
+        tk.Frame.__init__(self, master)
+        tk.Label(self, text="Input 1st DNA sequence without any spaces").pack(
+            side="top",
+            pady=10)
+        entry1 = tk.Entry(self, width=50)
+        entry1.pack()
+        tk.Label(self, text="Input 2nd DNA sequence without any spaces").pack(
+            side="top",
+            pady=10)
+        entry2 = tk.Entry(self, width=50)
+        entry2.pack()
+
+        label = ttk.Label(self, text="")
+        label.pack(anchor='w')
+        label.config(font=label_font)
+        align = tk.Button(self, text="Align",
+                            command=lambda:
+                            [label.config(
+                                text=ps.compare_dna(entry1.get(),
+                                                    entry2.get(
+                                                    )),
+                                wraplengt=500)])
+        align.pack()
+        tk.Button(self, text="Return to main page",
+                  command=lambda: master.frame_switch(MainPage)).pack()
+
+
+class RNACompare(tk.Frame):
+    def __init__(self, master):
+        label_font = tk.font.Font(family="Courier New", size=8)
+        dm = DnaManager()
+        rm = RnaManager()
+        pm = ProteinManager()
+        ps = ProteinSystem(dm, rm, pm)
+        tk.Frame.__init__(self, master)
+        tk.Label(self, text="Input 1st RNA sequence without any spaces").pack(
+            side="top",
+            pady=10)
+        entry1 = tk.Entry(self, width=50)
+        entry1.pack()
+        tk.Label(self, text="Input 2nd RNA sequence without any spaces").pack(
+            side="top",
+            pady=10)
+        entry2 = tk.Entry(self, width=50)
+        entry2.pack()
+
+        label = ttk.Label(self, text="")
+        label.pack(anchor='w')
+        label.config(font=label_font)
+        align = tk.Button(self, text="Align",
+                            command=lambda:
+                            [label.config(
+                                text=ps.compare_rna(entry1.get(),
+                                                    entry2.get(
+                                                    )),
+                                wraplengt=500)])
+        align.pack()
+        tk.Button(self, text="Return to main page",
+                  command=lambda: master.frame_switch(MainPage)).pack()
+
+
+class ProteinCompare(tk.Frame):
+    def __init__(self, master):
+        label_font = tk.font.Font(family="Courier New", size=8)
+        dm = DnaManager()
+        rm = RnaManager()
+        pm = ProteinManager()
+        ps = ProteinSystem(dm, rm, pm)
+        tk.Frame.__init__(self, master)
+        tk.Label(self, text="Input 1st protein sequence without any"
+                            " spaces").pack(
+            side="top",
+            pady=10)
+        entry1 = tk.Entry(self, width=50)
+        entry1.pack()
+        tk.Label(self, text="Input 2nd protein sequence without any "
+                            "spaces").pack(
+            side="top",
+            pady=10)
+        entry2 = tk.Entry(self, width=50)
+        entry2.pack()
+
+        label = ttk.Label(self, text="")
+        label.pack(anchor='w')
+        label.config(font=label_font)
+        align = tk.Button(self, text="Align",
+                            command=lambda:
+                            [label.config(
+                                text=ps.compare_protein(entry1.get(),
+                                                        entry2.get(
+                                                        )),
+                                wraplengt=500)])
+        align.pack()
+        tk.Button(self, text="Return to main page",
+                  command=lambda: master.frame_switch(MainPage)).pack()
 
 
 if __name__ == "__main__":
