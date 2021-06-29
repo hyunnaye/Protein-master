@@ -1,6 +1,6 @@
 # Protein Synthesis Master
 This is a python project using object oriented programming for everything regarding protein synthesis! 
-Currently availble functions:
+<b>Currently availble functions</b>:
   Find the DNA pair sequence of an inputted DNA sequence
   Find the RNA pair sequence of an inputted RNA sequence
   Conversion of DNA to RNA (vice versa)
