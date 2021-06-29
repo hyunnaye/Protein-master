@@ -1,5 +1,12 @@
 # Protein Synthesis Master
-This is a python project using object oriented programming for everything regarding protein synthesis! You can find DNA pairs, mRNA, and polypeptide chain for your DNA sequence.
+This is a python project using object oriented programming for everything regarding protein synthesis! 
+Currently availble functions:
+  Find the DNA pair sequence of an inputted DNA sequence
+  Find the RNA pair sequence of an inputted RNA sequence
+  Conversion of DNA to RNA (vice versa)
+  Conversion of DNA sequence to poly-peptide chain
+  Global sequence alignment for DNA, RNA, and protein sequences
+  
 Stay tuned for more functions to come!
 
 Run GUI.py to run the program
