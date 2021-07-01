@@ -2,6 +2,23 @@ from UseCases import DnaManager, RnaManager, ProteinManager
 import Presenter
 
 
+def align_helper(seq1, seq2) -> str:
+    mismatches = ''
+    if seq1 <= seq2:
+        for i in range(len(seq1)):
+            if seq1[i] != seq2[i]:
+                mismatches += '|'
+            else:
+                mismatches += ' '
+    else:
+        for i in range(len(seq2)):
+            if seq1[i] != seq2[i]:
+                mismatches += '|'
+            else:
+                mismatches += ' '
+    return mismatches
+
+
 class ProteinSystem:
 
     _dm: DnaManager()
@@ -56,7 +73,7 @@ class ProteinSystem:
             return Presenter.print_invalid_seq1()
         if not self._dm.valid_dna_seq(seq2):
             return Presenter.print_invalid_seq2()
-        return self._align_helper(seq1, seq2)
+        return seq1 + '\n' + align_helper(seq1, seq2) + '\n' + seq2
 
     def compare_rna(self, seq1, seq2) -> str:
         if len(seq1) > 70 or len(seq2) > 70:
@@ -65,7 +82,7 @@ class ProteinSystem:
             return Presenter.print_invalid_seq1()
         if not self._rm.valid_rna_seq(seq2):
             return Presenter.print_invalid_seq2()
-        return self._align_helper(seq1, seq2)
+        return seq1 + '\n' + align_helper(seq1, seq2) + '\n' + seq2
 
     def compare_protein(self, seq1, seq2) -> str:
         if len(seq1) > 70 or len(seq2) > 70:
@@ -74,20 +91,6 @@ class ProteinSystem:
             return Presenter.print_invalid_seq1()
         if not self._pm.valid_protein_sequence(seq2):
             return Presenter.print_invalid_seq2()
-        return self._align_helper(seq1, seq2)
+        return seq1 + '\n' + align_helper(seq1, seq2) + '\n' + seq2
 
-    def _align_helper(self, seq1, seq2) -> str:
-        mismatches = ''
-        if seq1 <= seq2:
-            for i in range(len(seq1)):
-                if seq1[i] != seq2[i]:
-                    mismatches += '|'
-                else:
-                    mismatches += ' '
-        else:
-            for i in range(len(seq2)):
-                if seq1[i] != seq2[i]:
-                    mismatches += '|'
-                else:
-                    mismatches += ' '
-        return mismatches
+
