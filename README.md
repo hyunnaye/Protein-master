@@ -1,3 +1,5 @@
+
+
 # Protein Synthesis Master
 This is a python project using object oriented programming for everything regarding protein synthesis!\n <br />
 <b>Currently availble functions</b>: <br />
@@ -10,3 +12,8 @@ This is a python project using object oriented programming for everything regard
 Stay tuned for more functions to come!
 
 Run GUI.py to run the program
+
+
+Demo video
+https://user-images.githubusercontent.com/61166764/124352718-177b3b80-dc3d-11eb-98f9-b3b6754d3c00.mp4
+
