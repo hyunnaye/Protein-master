@@ -1,7 +1,7 @@
 
 
 # Protein Synthesis Master
-This is a python project using object oriented programming that plays around with DNA, RNA, and protein sequences!\n <br />
+This is a python project using object oriented programming that plays around with DNA, RNA, and protein sequences! <br />
 <b>Currently available functions</b>: <br />
   * Find the pair of a DNA sequence<br />
   * Find the pair of a RNA sequence <br />
